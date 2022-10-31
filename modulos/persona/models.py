@@ -31,18 +31,18 @@ class Tutor(LogModel):
     def imagen_preview(self):
         if self.fotografia:
             _imagen = get_thumbnail(self.fotografia, '200x200', upscale=False, crop=False, quality=100)
-            return format_html('<img src="{}" width="{}" height="{}">'.format(_imagen.url,
-                                                                              _imagen.width,
-                                                                              _imagen.height))
+            return format_html('<img src="{0}" width="{1}" height="{2}"/>'.format(_imagen.url,
+                                                                                  _imagen.width,
+                                                                                  _imagen.height))
         return ""
 
     @property
     def imagen_tag(self):
         if self.fotografia:
             _imagen = get_thumbnail(self.fotografia, '55x55', upscale=False, crop=False, quality=100)
-            return format_html('<img src="{}" width="{}" height="{}">'.format(_imagen.url,
-                                                                              _imagen.width,
-                                                                              _imagen.height))
+            return format_html('<img src="{0}" width="{1}" height="{2}"/>'.format(_imagen.url,
+                                                                                  _imagen.width,
+                                                                                  _imagen.height))
         return ""
 
     class Meta:
@@ -80,10 +80,9 @@ class Estudiante(LogModel):
     @property
     def imagen_tag(self):
         if self.fotografia:
-            _fotografia = get_thumbnail(self.fotografia, '55x55', upscale=False, crop=False, quality=100)
-            return format_html('<img src="{0}" width="{1}" height="{2}">'.format(_fotografia.url,
-                                                                                 _fotografia.width,
-                                                                                 _fotografia.height))
+            _fotografia = get_thumbnail(self.fotografia, '50x50', upscale=False, crop=False, quality=100)
+            return format_html('<img src="{0}" width="{1}" height="{2}"/ style="border-radius:50%">'.
+                               format(_fotografia.url, _fotografia.width, _fotografia.height))
         return ""
 
     class Meta:

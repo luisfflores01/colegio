@@ -52,8 +52,8 @@ class EstudianteAdmin(admin.ModelAdmin):
     form = EstudianteForm
     exclude = ('usuario_creacion', 'usuario_modificacion', 'usuario_eliminacion', 'fecha_modificacion',
                'fecha_eliminacion',)
-    list_display = ('rude', 'nombre', 'apellido_paterno', 'apellido_materno',
-                    'genero', 'tutor', 'documento', 'expedido', 'fecha_nacimiento', 'imagen_tag',)
+    list_display = ('rude', 'imagen_tag', 'nombre', 'apellido_paterno', 'apellido_materno',
+                    'genero', 'tutor', 'documento', 'expedido', 'fecha_nacimiento',)
     search_fields = ('rude', 'documento', 'nombre', 'apellido_paterno', 'apellido_materno', )
     readonly_fields = ('imagen_preview', )
 
