@@ -17,8 +17,8 @@ class TutorAdmin(admin.ModelAdmin):
     form = TutorForm
     exclude = ('usuario_creacion', 'usuario_modificacion', 'usuario_eliminacion', 'fecha_modificacion',
                'fecha_eliminacion',)
-    list_display = ('documento', 'expedido', 'nombre', 'apellido_paterno', 'apellido_materno',
-                    'genero', 'ocupacion', 'tipotutor', 'imagen_tag')
+    list_display = ('documento', 'imagen_tag', 'expedido', 'nombre', 'apellido_paterno', 'apellido_materno',
+                    'genero', 'ocupacion', 'tipotutor',)
     search_fields = ('documento', 'nombre', 'apellido_paterno', 'apellido_materno', )
     readonly_fields = ('imagen_preview', )
 
@@ -87,8 +87,8 @@ class ProfesorAdmin(admin.ModelAdmin):
     form = ProfesorForm
     exclude = ('usuario_creacion', 'usuario_modificacion', 'usuario_eliminacion', 'fecha_modificacion',
                'fecha_eliminacion',)
-    list_display = ('documento', 'expedido', 'nombre', 'apellido_paterno', 'apellido_materno',
-                    'genero', 'imagen_tag',)
+    list_display = ('documento', 'imagen_tag', 'expedido', 'nombre', 'apellido_paterno', 'apellido_materno',
+                    'genero', )
     search_fields = ('documento', 'nombre', 'apellido_paterno', 'apellido_materno', )
     readonly_fields = ('imagen_preview', )
 

@@ -39,10 +39,9 @@ class Tutor(LogModel):
     @property
     def imagen_tag(self):
         if self.fotografia:
-            _imagen = get_thumbnail(self.fotografia, '55x55', upscale=False, crop=False, quality=100)
-            return format_html('<img src="{0}" width="{1}" height="{2}"/>'.format(_imagen.url,
-                                                                                  _imagen.width,
-                                                                                  _imagen.height))
+            _imagen = get_thumbnail(self.fotografia, '50x50', upscale=False, crop=False, quality=100)
+            return format_html('<img src="{0}" width="{1}" height="{2}"/ style="border-radius:50%">'
+                               .format(_imagen.url, _imagen.width, _imagen.height))
         return ""
 
     class Meta:
@@ -63,7 +62,7 @@ class Estudiante(LogModel):
     documento = models.CharField('Carnet de Identidad', max_length=15, null=True, blank=True)
     expedido = models.ForeignKey(Departamento, related_name='+', on_delete=models.PROTECT, null=True, blank=True)
     fecha_nacimiento = models.DateField('Fecha de Nacimiento', null=False, blank=False)
-    fotografia = models.ImageField('Fotografía del Tutor(a)', max_length=200, upload_to='media/estudiante/',
+    fotografia = models.ImageField('Fotografía del Estudiante', max_length=200, upload_to='media/estudiante/',
                                    null=True, blank=True)
     tutor = models.ForeignKey(Tutor, related_name='+', on_delete=models.PROTECT)
     celular = models.IntegerField('Nro. Celular', default=0, validators=[validar_celular, ])
@@ -100,7 +99,7 @@ class Profesor(LogModel):
     apellido_paterno = models.CharField('Apellido Paterno', max_length=50, null=True, blank=True)
     apellido_materno = models.CharField('Apellido Materno', max_length=50, null=True, blank=True)
     genero = models.ForeignKey(Genero, related_name='+', on_delete=models.PROTECT)
-    fotografia = models.ImageField('Fotografía del Tutor(a)', max_length=200, upload_to='media/profesor/',
+    fotografia = models.ImageField('Fotografía del Profesor(a)', max_length=200, upload_to='media/profesor/',
                                    null=True, blank=True)
     celular = models.IntegerField('Nro. Celular', default=0, validators=[validar_celular, ])
     especialidad = models.ManyToManyField(Especialidad)
@@ -118,9 +117,8 @@ class Profesor(LogModel):
     def imagen_tag(self):
         if self.fotografia:
             _fotografia = get_thumbnail(self.fotografia, '55x55', upscale=False, crop=False, quality=100)
-            return format_html('<img src="{0}" width="{1}" height="{2}">'.format(_fotografia.url,
-                                                                                 _fotografia.width,
-                                                                                 _fotografia.height))
+            return format_html('<img src="{0}" width="{1}" height="{2}" / style="border-radius:50%">'
+                               .format(_fotografia.url, _fotografia.width, _fotografia.height))
         return ""
 
     class Meta:

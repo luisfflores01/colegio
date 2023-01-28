@@ -30,6 +30,7 @@ APPS_LOCAL = [
     'modulos.persona',
     'modulos.curso',
     'modulos.inscripcion',
+    'modulos.kardex',
 ]
 
 APPS_THRIDS = [

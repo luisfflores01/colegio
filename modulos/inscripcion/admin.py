@@ -9,9 +9,9 @@ from .models import (
 class InscripcionAdmin(admin.ModelAdmin):
     exclude = ('usuario_creacion', 'usuario_modificacion', 'usuario_eliminacion', 'fecha_modificacion',
                'fecha_eliminacion',)
-    list_display = ('estudiante', 'curso', 'tipoestudiante', 'gestion', 'fecha_creacion',
+    list_display = ('tipoestudiante', 'estudiante', 'curso', 'gestion', 'fecha_creacion',
                     'usuario_creacion',)
-    search_fields = ('estudiante', 'tipoestudiante', 'gestion', )
+    search_fields = ('tipoestudiante', 'estudiante', 'gestion', )
 
     def save_model(self, request, obj, form, change):
         if change:

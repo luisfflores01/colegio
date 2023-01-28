@@ -9,9 +9,9 @@ from modulos.parametro.models import (
 
 
 class Inscripcion(LogModel):
+    tipoestudiante = models.ForeignKey(TipoEstudiante, related_name='+', on_delete=models.PROTECT)
     estudiante = models.ForeignKey(Estudiante, related_name='+', on_delete=models.PROTECT)
     curso = models.ForeignKey(Curso, related_name='+', on_delete=models.PROTECT)
-    tipoestudiante = models.ForeignKey(TipoEstudiante, related_name='+', on_delete=models.PROTECT)
     gestion = models.IntegerField('Gestión',)
     tipodocumento = models.ManyToManyField(Documento)
 
@@ -20,6 +20,5 @@ class Inscripcion(LogModel):
         verbose_name_plural = 'Inscripciones'
 
     def __str__(self):
-        return '{0}{1}{2}{3}{4}'.format(self.estudiante, self.curso, self.tipoestudiante,
+        return '{0}{1}{2}{3}{4}'.format(self.tipoestudiante, self.estudiante, self.curso,
                                         self.gestion, self.tipodocumento)
-
