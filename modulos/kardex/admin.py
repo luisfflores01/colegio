@@ -1,7 +1,12 @@
 from django.contrib import admin
 from django.db import transaction
 from datetime import datetime as dt
-from easy_select2 import select2_modelform
+from modulos.parametro.models import Indicador
+from .form import (
+    IndicadorPositivoForm,
+    IndicadorNegativoForm
+)
+# from easy_select2 import select2_modelform
 from .models import (
     Asistencia,
     AsistenciaDetalle,
@@ -14,10 +19,23 @@ from .models import (
 
 class AsistenciaDetalleInline(admin.TabularInline):
     model = AsistenciaDetalle
-    # form = AsistenciaDetalleForm
     exclude = ('usuario_creacion', 'usuario_modificacion', 'usuario_eliminacion', 'fecha_modificacion',
                'fecha_eliminacion',)
     extra = 0
+    form = IndicadorPositivoForm
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        queryset = queryset.filter(fecha_eliminacion__isnull=True)
+        return queryset
+
+
+class AsistenciaIndicadorNegativoGralInline(admin.TabularInline):
+    model = AsistenciaIndicadoresNegativosGral
+    exclude = ('usuario_creacion', 'usuario_modificacion', 'usuario_eliminacion', 'fecha_modificacion',
+               'fecha_eliminacion',)
+    extra = 0
+    form = IndicadorNegativoForm
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
@@ -31,7 +49,7 @@ class AsistenciaAdmin(admin.ModelAdmin):
                'fecha_eliminacion',)
     list_display = ('estudiante', 'fecha', 'hora_llegada', 'hora_salida', 'fecha_creacion',)
     search_fields = ('estudiante', )
-    inlines = [AsistenciaDetalleInline, ]
+    inlines = [AsistenciaDetalleInline, AsistenciaIndicadorNegativoGralInline, ]
 
     def save_model(self, request, obj, form, change):
         if change:

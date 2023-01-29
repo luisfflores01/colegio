@@ -27,7 +27,7 @@ class AsistenciaDetalle(LogModel):
     asistencia = models.ForeignKey(Asistencia, related_name='+', on_delete=models.PROTECT)
     profesor = models.ForeignKey(Profesor, related_name='+', on_delete=models.PROTECT)
     materia = models.ForeignKey(Materia, related_name='+', on_delete=models.PROTECT)
-    indicador_positivo = models.ForeignKey(Indicador, related_name='+', on_delete=models.PROTECT)
+    indicador_positivo = models.ForeignKey(Indicador, related_name='+', on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Asistencia con Detalle'

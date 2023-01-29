@@ -1,8 +1,16 @@
+from django import forms
+from modulos.parametro.models import Indicador
+from .models import AsistenciaDetalle
 
 
-class MyModelForm(forms.ModelForm):
-    other_model = forms.ModelChoiceField(queryset=OtherModel.objects.none())
+class IndicadorPositivoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['indicador_positivo'].queryset = Indicador.objects.filter(tipoindicador_id=1)
 
-    class Meta:
-        model = MyModel
-        fields = ['other_model', 'other_fields']
+
+class IndicadorNegativoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['indicador_negativo'].queryset = Indicador.objects.filter(tipoindicador_id=2)
+
